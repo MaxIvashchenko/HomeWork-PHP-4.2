@@ -18,20 +18,20 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] === 'done') {
         $sql_query = 'UPDATE tasks SET is_done = 1 WHERE id = ?';
         $rows = $db->prepare($sql_query);
-        $rows->execute([$_GET['id']]);
+        $rows->execute((int)[$_GET['id']]);
     }
     // редактировать задачу
     if ($_GET['action'] === 'edit') {
         $sql_query = 'SELECT * FROM tasks WHERE id = ?';
         $rows = $db->prepare($sql_query);
-        $rows->execute([$_GET['id']]);
+        $rows->execute((int)[$_GET['id']]);
         $description = $rows->fetch()['description'];
     }
     //удалить задачу
     if ($_GET['action'] === 'delete') {
         $sql_query = "DELETE FROM tasks WHERE id = ?";
         $rows = $db->prepare($sql_query);
-        $rows->execute([$_GET['id']]);
+        $rows->execute((int)[$_GET['id']]);
     }
 }
  ?>
